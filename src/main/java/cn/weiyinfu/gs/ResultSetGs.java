@@ -1,4 +1,4 @@
-package weiyinfu.gs;
+package cn.weiyinfu.gs;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;

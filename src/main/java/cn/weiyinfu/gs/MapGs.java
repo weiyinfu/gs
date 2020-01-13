@@ -1,4 +1,4 @@
-package weiyinfu.gs;
+package cn.weiyinfu.gs;
 
 import java.util.Map;
 import java.util.TreeMap;

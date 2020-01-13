@@ -1,7 +1,7 @@
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import org.junit.Test;
-import weiyinfu.gs.BeanGs;
+import cn.weiyinfu.gs.BeanGs;
 
 import java.util.ArrayList;
 import java.util.List;

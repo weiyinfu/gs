@@ -1,4 +1,4 @@
-package weiyinfu.gs;
+package cn.weiyinfu.gs;
 
 //属性获取、设置接口
 public interface GetterAndSetter {
