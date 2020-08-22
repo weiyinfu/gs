@@ -1,7 +1,6 @@
-import io.vertx.core.json.JsonArray;
-import io.vertx.core.json.JsonObject;
-import org.junit.Test;
 import cn.weiyinfu.gs.BeanGs;
+import cn.weiyinfu.gs.Gs;
+import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +34,6 @@ public void testBeanGs() {
     getterAndSetter.set("name", "wyf");
     getterAndSetter.set("age", 19);
     List<String> li = new ArrayList<>(getterAndSetter.attrs());
-    System.out.println(new JsonArray(li));
-    System.out.println(JsonObject.mapFrom(haha).toString());
 }
 
 @Test
@@ -47,5 +44,15 @@ public void testBeanGsIgnoreCase() {
     BeanGs gs = new BeanGs(haha, true);
     System.out.println(gs.get("name"));
     System.out.println(gs.get("age"));
+}
+
+@Test
+public void testGs2Map() {
+    User haha = new User();
+    haha.setAge(18);
+    haha.setName("haha");
+    var ma = Gs.bean2Map(haha, false);
+    System.out.println(ma.get("name"));
+    System.out.println(ma.get("age"));
 }
 }

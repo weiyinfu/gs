@@ -1,7 +1,5 @@
 package cn.weiyinfu.gs;
 
-import io.vertx.core.json.JsonObject;
-
 import java.lang.reflect.InvocationTargetException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,19 +30,6 @@ public static <T> T map2Bean(Map<String, Object> map, Class<T> cls, boolean igno
     return null;
 }
 
-public static <T> T json2Bean(JsonObject obj, Class<T> cls, boolean ignoreCase) {
-    try {
-        T t = cls.getDeclaredConstructor().newInstance();
-        Map<String, Object> map = obj.getMap();
-        MapGs mapGs = new MapGs(map, ignoreCase);
-        BeanGs beanGs = new BeanGs(t, ignoreCase);
-        Gs.assign(beanGs, mapGs, map.keySet());
-        return t;
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-    return null;
-}
 
 /**
  * 根据类型将x转化为type类型的数据
@@ -122,28 +107,6 @@ public static void map2StaticField(Class<?> cls, Map<String, Object> map, boolea
     MapGs mapGs = new MapGs(map, ignoreCase);
     StaticFieldGs staticGs = new StaticFieldGs(cls, ignoreCase);
     assign(staticGs, mapGs, map.keySet());
-}
-
-public static JsonObject bean2json(Object obj) {
-    JsonObject json = new JsonObject();
-    BeanGs beanGs = new BeanGs(obj, false);
-    for (String attr : beanGs.attrs()) {
-        json.put(attr, beanGs.get(attr));
-    }
-    return json;
-}
-
-//从resultset获取一个JsonObject，可以进一步使用JsonObject的mapTo函数转换为对象
-public static JsonObject resultSet2Json(ResultSet res) {
-    JsonObject obj = new JsonObject();
-    try {
-        for (int i = 1; i <= res.getMetaData().getColumnCount(); i++) {
-            obj.put(res.getMetaData().getColumnName(i), res.getObject(i));
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-    return obj;
 }
 
 private static void assign(GetterAndSetter gsDes, GetterAndSetter gsSrc, Collection<String> attrs) {

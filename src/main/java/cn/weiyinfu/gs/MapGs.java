@@ -23,13 +23,19 @@ public MapGs(Map<String, Object> obj, boolean ignoreCase) {
 
 @Override
 public Object get(String attr) {
-    if (this.ignoreCase) attr = attr.toLowerCase();
-    return avatar.get(attr);
+    if (this.ignoreCase) {
+        attr = attr.toLowerCase();
+        return avatar.get(attr);
+    } else {
+        return real.get(attr);
+    }
 }
 
 @Override
 public void set(String attr, Object valueObj) {
-    avatar.put(attr.toLowerCase(), valueObj);
+    if (this.ignoreCase) {
+        avatar.put(attr.toLowerCase(), valueObj);
+    }
     real.put(attr, valueObj);
 }
 }
